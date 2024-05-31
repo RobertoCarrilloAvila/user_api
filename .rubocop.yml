@@ -55,8 +55,20 @@ Style/RedundantRegexpCharacterClass:
 Style/ReturnNil:
   Enabled: true
 
+Style/FetchEnvVar:
+  Enabled: false
+
 Style/SlicingWithRange:
   Enabled: false
 
 Style/StringConcatenation:
   Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 5
