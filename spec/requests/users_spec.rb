@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users' do
   describe 'GET /api/users' do
-    let!(:users) { create_list(:user, 3) }
+    let!(:users) { create_list(:user, 3) } # rubocop:disable RSpec/LetSetup
     let(:first_user) { User.order(id: :desc).first }
     let(:response_users) { response.parsed_body['users'] }
 
