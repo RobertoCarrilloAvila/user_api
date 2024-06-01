@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Users' do
+  it_behaves_like 'an api controller', Api::UsersController, '/api/users'
+
   describe 'GET /api/users' do
     let!(:users) { create_list(:user, 3) } # rubocop:disable RSpec/LetSetup
     let(:first_user) { User.order(id: :desc).first }
