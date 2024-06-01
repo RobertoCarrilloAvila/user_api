@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
+
 RSpec.describe UserKeyAccessJob do
   subject { described_class.new }
 

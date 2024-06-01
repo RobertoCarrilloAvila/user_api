@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe AccountKeyService do
   describe '#call' do
     subject { described_class.new.call(email, key) }
-  
+
     let(:api_url) { ENV['ACCOUNT_KEY_URL'] }
     let(:email) { Faker::Internet.email }
     let(:key) { Faker::Internet.password }
