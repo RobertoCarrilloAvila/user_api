@@ -13,19 +13,7 @@ RSpec.describe AccountKeyService do
     let(:request_body) { { email: email, key: key }.to_json }
 
     context 'when the account key api responds successfully' do
-      let(:response_account_key) { Faker::Internet.password }
-      let(:response_body) do
-        {
-          email: email,
-          account_key: response_account_key
-        }.to_json
-      end
-
-      before do
-        stub_request(:post, api_url)
-          .with(body: request_body, headers: request_headers)
-          .to_return(status: 200, body: response_body)
-      end
+      include_context 'with success api response'
 
       it 'returns the account key' do
         expect(subject).to eq(response_account_key)
