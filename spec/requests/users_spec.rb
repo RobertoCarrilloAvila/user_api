@@ -106,5 +106,46 @@ RSpec.describe 'Users' do
         expect(response.parsed_body.keys).to match_array(%w[email phone_number full_name key account_key metadata])
       end
     end
+
+    context 'when the uniq param is already taken' do
+      let!(:existing_user) { create(:user, email: 'test@test.com') }
+      let(:user_params) { attributes_for(:user, email: existing_user.email) }
+
+      it 'does not create a new user' do
+        expect { post api_users_path, params: user_params }.not_to change(User, :count)
+      end
+
+      it 'return unprocessable entity status' do
+        post api_users_path, params: user_params
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'return correct error message' do
+        post api_users_path, params: user_params
+
+        expect(response.parsed_body['errors']).to include('Email has already been taken')
+      end
+    end
+
+    context 'when the is missing a not null param' do
+      let(:user_params) { attributes_for(:user, :with_metadata, phone_number: nil) }
+
+      it 'does not create a new user' do
+        expect { post api_users_path, params: user_params }.not_to change(User, :count)
+      end
+
+      it 'return unprocessable entity status' do
+        post api_users_path, params: user_params
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'return correct error message' do
+        post api_users_path, params: user_params
+
+        expect(response.parsed_body['errors']).to include("Phone number can't be blank")
+      end
+    end
   end
 end
