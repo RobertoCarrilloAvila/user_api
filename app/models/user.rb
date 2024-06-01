@@ -15,6 +15,10 @@ class User < ApplicationRecord
 
   before_validation :build_unique_key
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[email full_name metadata]
+  end
+
   def password=(new_password)
     new_password = Password.create(new_password) if new_password.present?
     super
