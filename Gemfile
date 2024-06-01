@@ -27,6 +27,7 @@ gem 'bootsnap', '1.18.3', require: false
 # gem 'rack-cors'
 
 gem 'rest-client', '~> 2.1'
+gem 'ransack', '~> 4.1'
 
 group :development do
   gem 'rubocop-rails', '~> 2.25', require: false
