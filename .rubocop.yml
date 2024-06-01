@@ -72,3 +72,12 @@ RSpec/MessageSpies:
 
 RSpec/MultipleExpectations:
   Max: 5
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
